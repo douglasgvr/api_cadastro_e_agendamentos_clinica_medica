@@ -4,8 +4,8 @@ import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@Embeddable
 @Getter
+@Embeddable
 @AllArgsConstructor
 public class Endereco {
 
