@@ -1,10 +1,7 @@
 package br.com.douglascoelho.api_cadastro_e_agendamentos_clinica_medica.controller;
 
 
-import br.com.douglascoelho.api_cadastro_e_agendamentos_clinica_medica.medico.DadosCadastroMedico;
-import br.com.douglascoelho.api_cadastro_e_agendamentos_clinica_medica.medico.DadosListagemMedico;
-import br.com.douglascoelho.api_cadastro_e_agendamentos_clinica_medica.medico.Medico;
-import br.com.douglascoelho.api_cadastro_e_agendamentos_clinica_medica.medico.MedicoRepository;
+import br.com.douglascoelho.api_cadastro_e_agendamentos_clinica_medica.medico.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,5 +29,12 @@ public class MedicoController {
     @GetMapping
     public Page<DadosListagemMedico> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
         return repository.findAll(paginacao).map(DadosListagemMedico::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizarMedicos dados) {
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
     }
 }

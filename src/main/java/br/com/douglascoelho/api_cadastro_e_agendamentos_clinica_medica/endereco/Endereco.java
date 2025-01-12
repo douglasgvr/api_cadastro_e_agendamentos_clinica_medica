@@ -29,4 +29,15 @@ public class Endereco {
 
     public Endereco() {
     }
+
+    public void atualizarInformacoes(DadosEndereco dados) {
+        this.logradouro = dados.logradouro() != null ? dados.logradouro() : this.logradouro;
+        this.bairro = dados.bairro() != null ? dados.bairro() : this.bairro;
+        this.cep = dados.cep() != null ? dados.cep() : this.cep;
+        this.uf = dados.uf() != null ? dados.uf() : this.uf;
+        this.cidade = dados.cidade() != null ? dados.cidade() : this.cidade;
+        this.numero = dados.numero() != null ? dados.numero() : this.numero;
+        this.complemento = dados.complemento() != null ? dados.complemento() : this.complemento;
+    }
+
 }
